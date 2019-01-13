@@ -1,0 +1,26 @@
+<body>
+<div>
+  <h1 i18n="An introduction header for this sample">Hello i18n!</h1>
+  <h1 style="text-align: center">Gestion des contacts</h1>
+</div>
+<div class="container spacer">
+  <div class="col-md-2">
+    <div class="btn-group-vertical">
+      <ul class="list-unstyled">
+        <li>
+          <button routerLink="/about" class="btn btn-link"> About</button>
+        </li>
+        <li>
+          <button routerLink="/contacts" class="btn btn-link"> Contacts</button>
+        </li>
+        <li>
+          <button routerLink="/new-contact" class="btn btn-link"> New Contacts</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+</body>

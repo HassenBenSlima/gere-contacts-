@@ -1,0 +1,119 @@
+<div class="container spacer">
+  <div class="panel panel-default" *ngIf="mode==1">
+    <div class="panel panel-heading">Nouveau Contact</div>
+
+    <div class="panel panel-body">
+      <form [formGroup]="form">
+        <div class="form-group"
+             [ngClass]="{'has-error': (form.get('nom').touched || form.get('nom').dirty) &&  !form.get('nom').valid }">
+          <label class="col-md-2 control-label">Nom</label>
+          <div class="col-md-8">
+            <input class="form-control" type="text" placeholder="Nom(required)" formControlName="nom"/>
+            <span class="help-block" *ngIf="(form.get('nom').touched ||form.get('nom').dirty) &&form.get('nom').errors">
+              <span *ngIf="form.get('nom').errors.required">entrer le nom svp</span>
+              <span *ngIf="form.get('nom').errors.minlength"> minimum 3 characters. </span>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group"
+             [ngClass]="{'has-error': (form.get('prenom').touched || form.get('prenom').dirty) &&  !form.get('prenom').valid }">
+          <label class="col-md-2 control-label">Prenom</label>
+          <div class="col-md-8">
+            <input class="form-control" type="text" placeholder="Prenom (required)" formControlName="prenom"/>
+            <span class="help-block"
+                  *ngIf="(form.get('prenom').touched ||form.get('prenom').dirty) &&form.get('prenom').errors">
+              <span *ngIf="form.get('prenom').errors.required">entrer le prenom svp</span>
+              <span *ngIf="form.get('prenom').errors.minlength"> minimum 3 characters. </span>
+            </span>
+          </div>
+        </div>
+        <div class="form-group"
+             [ngClass]="{'has-error': (form.get('email').touched || form.get('email').dirty) &&  !form.get('email').valid }">
+          <label class="col-md-2 control-label">Email</label>
+          <div class="col-md-8">
+            <input class="form-control" type="email" placeholder="Email (required)" formControlName="email"/>
+            <span class="help-block"
+                  *ngIf="(form.get('email').touched ||form.get('email').dirty) &&form.get('email').errors">
+              <span *ngIf="form.get('email').errors.required">entrer l'email svp</span>
+              <span *ngIf="form.get('email').errors.email"> svp entrer un mail correcte </span>
+            </span>
+          </div>
+        </div>
+        <div class="form-group"
+             [ngClass]="{'has-error': (form.get('dateNaissance').touched || form.get('dateNaissance').dirty) &&  !form.get('dateNaissance').valid }">
+          <label class="col-md-2 control-label">Date de naissance</label>
+          <div class="col-md-8">
+            <input class="form-control" type="date" placeholder="Date Naissance (required)"
+                   formControlName="dateNaissance"/>
+            <span class="help-block"
+                  *ngIf="(form.get('dateNaissance').touched ||form.get('dateNaissance').dirty) &&form.get('dateNaissance').errors">
+              <span *ngIf="form.get('dateNaissance').errors.required">entrer la date de naissance svp</span>
+            </span>
+          </div>
+        </div>
+        <div class="form-group"
+             [ngClass]="{'has-error': (form.get('tel').touched || form.get('tel').dirty) &&  !form.get('tel').valid }">
+          <label class="col-md-2 control-label">Tel</label>
+          <div class="col-md-8">
+            <input class="form-control" type="number" placeholder="tel (required)" formControlName="tel"/>
+            <span class="help-block" *ngIf="(form.get('tel').touched ||form.get('tel').dirty) &&form.get('tel').errors">
+              <span *ngIf="form.get('tel').errors.required">entrer numero de tel svp</span>
+              <span *ngIf="form.get('tel').errors.pattern"> svp entrer un num tel correcte </span>
+            </span>
+          </div>
+        </div>
+        <div class="form-group"
+             [ngClass]="{'has-error': (form.get('photo').touched || form.get('photo').dirty) &&  !form.get('photo').valid }">
+          <label class="col-md-2 control-label">Photo</label>
+          <div class="col-md-8">
+            <input class="form-control" type="text" placeholder="photo (required)" formControlName="photo"/>
+            <span class="help-block"
+                  *ngIf="(form.get('photo').touched ||form.get('photo').dirty) &&form.get('photo').errors">
+              <span *ngIf="form.get('photo').errors.required">svp parcourir une photo </span>
+            </span>
+          </div>
+        </div>
+        <button class="btn btn-primary" [disabled]="!form.valid" (click)="saveContact()" id="validate" name="validate">
+          Save
+        </button>
+      </form>
+    </div>
+  </div>
+  <div class="panel panel-primary" *ngIf="mode==2">
+    <div class="panel panel-heading">Confirmation</div>
+    <div class="panel panel-body">
+      <div>
+        <div class="form-group">
+          <label class="control-label">Id:</label>
+          <label>{{contact.id}}</label>
+        </div>
+        <div class="form-group">
+          <label class="control-label">Nom:</label>
+          <label>{{contact.nom}}</label>
+        </div>
+        <div class="form-group">
+          <label class="control-label">Prenom:</label>
+          <label>{{contact.prenom}}</label>
+        </div>
+        <div class="form-group">
+          <label class="control-label">Email:</label>
+          <label>{{contact.email}}</label>
+        </div>
+        <div class="form-group">
+          <label class="control-label">Date naissance:</label>
+          <label>{{contact.dateNaissance}}</label>
+        </div>
+        <div class="form-group">
+          <label class="control-label">Tel:</label>
+          <label>{{contact.tel}}</label>
+        </div>
+        <div class="form-group">
+          <label class="control-label">Photo:</label>
+          <label>{{contact.photo}}</label>
+        </div>
+        <button class="btn btn-primary" (click)="mode=1">New Contact</button>
+      </div>
+    </div>
+  </div>
+</div>
